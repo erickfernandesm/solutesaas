@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+body {
+  background: #060607;
+  color: #EDEDF0;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+::selection { background: rgba(243, 140, 35, .35); color: #fff; }
+:focus-visible { outline: 2px solid #F38C23; outline-offset: 3px; border-radius: 6px; }
+
+.bg-dots {
+  background-image: radial-gradient(rgba(255,255,255,.08) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+/* Cartão com luz que segue o mouse */
+.glow-card-light {
+  background:
+    radial-gradient(420px circle at var(--x, 50%) var(--y, 50%), rgba(243,140,35,.10), transparent 45%);
+}
+.glow-card::before {
+  content: "";
+  position: absolute; inset: 0; border-radius: inherit; padding: 1px;
+  background: radial-gradient(300px circle at var(--x, 50%) var(--y, 50%), rgba(243,140,35,.6), transparent 50%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  opacity: 0; transition: opacity .3s;
+  pointer-events: none;
+}
+.glow-card:hover::before { opacity: 1; }
+
+/* Texto com degradê da marca */
+.text-gradient {
+  background: linear-gradient(100deg, #FFC98F 0%, #F38C23 45%, #D2740F 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+/* Linha animada do diagrama */
+@keyframes dash { to { stroke-dashoffset: -24; } }
+.flow-line { stroke-dasharray: 4 8; animation: dash 1.2s linear infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
+/* rolagem sem barra visível (carrosséis e tela do celular no hero) */
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }

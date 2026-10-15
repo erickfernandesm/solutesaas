@@ -1,0 +1,699 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Solute Tec</title>
+<meta name="description" content="Solute Tec: os sistemas da Solute RH. Solute Gestão, Solute Ponto, Solute Recruta e Solute Forms.">
+<meta name="theme-color" content="#08080A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: índice de produtos. Hero com "um dia de trabalho" em linha do tempo, depois uma faixa por sistema
+   (texto + recorte de tela feito em HTML), prova social, perguntas e contato. Escuro, laranja como único destaque. */
+:root {
+  --ink-0: #08080A;      /* fundo */
+  --ink-1: #0F0F12;      /* faixa alternada */
+  --ink-2: #16161A;      /* superfícies de UI */
+  --ink-3: #1F1F25;      /* controles */
+  --line: #2A2A31;
+  --fog: #EDEDF0;        /* texto */
+  --mute: #A0A0AA;
+  --dim: #6E6E78;
+  --orange: #F38C23;
+  --orange-soft: #FFAE5C;
+  --orange-tint: rgba(243,140,35,.12);
+  --ok: #5BC98A;
+  --warn: #F2777A;
+  --f-display: "Sora", "Segoe UI", system-ui, sans-serif;
+  --f-body: "Inter", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --wrap: 1180px;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+body {
+  margin: 0; background: var(--ink-0); color: var(--fog);
+  font: 400 16px/1.6 var(--f-body);
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; letter-spacing: -.02em; }
+p { margin: 0; }
+:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; border-radius: 4px; }
+
+.wrap {
+  max-width: var(--wrap); margin: 0 auto;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
+.eyebrow {
+  font: 600 12px/1 var(--f-body); letter-spacing: .14em; text-transform: uppercase; color: var(--orange);
+}
+.btn {
+  display: inline-flex; align-items: center; gap: 10px; text-decoration: none;
+  font: 600 15px/1 var(--f-body); padding: 15px 22px; border-radius: 10px;
+  border: 1px solid transparent; transition: background .2s, border-color .2s, color .2s;
+}
+.btn-primary { background: var(--orange); color: #140A00; }
+.btn-primary:hover { background: var(--orange-soft); }
+.btn-ghost { border-color: var(--line); color: var(--fog); }
+.btn-ghost:hover { border-color: var(--mute); }
+.btn svg { width: 18px; height: 18px; flex: none; }
+
+/* Header */
+.top {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+  background: rgba(8,8,10,.86); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.top .wrap { display: flex; align-items: center; gap: 28px; height: 68px; }
+.brand { display: flex; align-items: baseline; gap: 0; text-decoration: none; font: 800 22px/1 var(--f-display); letter-spacing: -.01em; }
+.brand b { color: var(--orange); font-weight: 800; }
+.top nav { display: flex; gap: 22px; margin-left: auto; }
+.top nav a { text-decoration: none; color: var(--mute); font-size: 14px; font-weight: 500; }
+.top nav a:hover { color: var(--fog); }
+.top .btn { padding: 11px 16px; font-size: 14px; }
+@media (max-width: 860px) { .top nav { display: none; } .top .btn { margin-left: auto; } }
+
+/* Hero */
+.hero { padding-block: 72px 80px; }
+.hero .wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: 56px; align-items: center; }
+.hero h1 { font-size: clamp(38px, 5.6vw, 66px); line-height: 1.04; font-weight: 800; margin-top: 18px; }
+.hero h1 em { font-style: normal; color: var(--orange); }
+.hero .lead { color: var(--mute); font-size: 18px; max-width: 34em; margin-top: 22px; }
+.hero .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.hero .from { display: flex; align-items: center; gap: 12px; margin-top: 36px; color: var(--dim); font-size: 13px; }
+.hero .from img { height: 30px; width: auto; }
+
+.day { border: 1px solid var(--line); border-radius: 16px; background: var(--ink-1); padding: 24px 24px 18px; min-width: 0; }
+.day-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+.day-head strong { font: 600 15px/1.2 var(--f-display); }
+.day-head span { font-size: 12px; color: var(--dim); }
+.day ol { list-style: none; margin: 0; padding: 0; }
+.day li {
+  display: grid; grid-template-columns: 58px 1fr; gap: 14px; padding: 14px 0;
+  border-bottom: 1px dashed var(--line);
+  animation: rise .6s cubic-bezier(.2,.7,.2,1) backwards;
+}
+.day li:last-child { border-bottom: 0; }
+.day li:nth-child(2) { animation-delay: .12s; } .day li:nth-child(3) { animation-delay: .24s; }
+.day li:nth-child(4) { animation-delay: .36s; } .day li:nth-child(5) { animation-delay: .48s; }
+.day time { font: 500 14px/1.5 var(--f-mono); color: var(--orange); font-variant-numeric: tabular-nums; }
+.day .sys { font: 600 11px/1 var(--f-body); letter-spacing: .1em; text-transform: uppercase; color: var(--mute); }
+.day p { font-size: 14.5px; line-height: 1.45; margin-top: 6px; }
+.day code { font: 400 12px/1 var(--f-mono); color: var(--dim); }
+@keyframes rise { from { opacity: .25; transform: translateY(8px); } }
+
+/* Índice */
+.index { border-top: 1px solid var(--line); }
+.index ul { list-style: none; margin: 0; padding: 0; }
+.index li a {
+  display: grid; grid-template-columns: 220px 1fr 240px 28px; gap: 24px; align-items: center;
+  padding: 26px 0; border-bottom: 1px solid var(--line); text-decoration: none; transition: padding .25s;
+}
+.index li a:hover { padding-left: 10px; }
+.index li a:hover .arrow { color: var(--orange); transform: translateX(4px); }
+.index .name { font: 700 22px/1.1 var(--f-display); }
+.index .name b { color: var(--orange); font-weight: 700; }
+.index .what { color: var(--fog); font-size: 15.5px; min-width: 0; }
+.index .who { color: var(--mute); font-size: 13.5px; }
+.index .arrow { color: var(--dim); transition: transform .25s, color .25s; font-size: 20px; }
+@media (max-width: 860px) {
+  .index li a { grid-template-columns: 1fr 24px; gap: 6px 16px; }
+  .index .name { grid-column: 1; } .index .arrow { grid-column: 2; grid-row: 1; }
+  .index .what, .index .who { grid-column: 1 / -1; }
+}
+
+/* Seções de produto */
+.product { padding-block: 104px; border-top: 1px solid var(--line); }
+.product.alt { background: var(--ink-1); }
+.p-top { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.product.alt .p-top .shot { order: -1; }
+.p-top > * { min-width: 0; }
+.logo { height: 54px; width: auto; }
+.wordmark { font: 800 40px/.9 var(--f-display); letter-spacing: -.01em; text-transform: uppercase; }
+.wordmark b { display: block; color: var(--orange); font-weight: 800; }
+.p-top h2 { font-size: clamp(28px, 3.4vw, 40px); line-height: 1.12; margin-top: 30px; font-weight: 700; }
+.p-top .desc { color: var(--mute); font-size: 17px; margin-top: 18px; max-width: 34em; }
+.for { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+.for span { font-size: 13px; color: var(--fog); border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; }
+.p-top .btn { margin-top: 30px; }
+
+.feats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 40px; margin-top: 72px; }
+.feats > div { padding: 22px 0 26px; border-top: 1px solid var(--line); min-width: 0; }
+.feats h3 { font: 600 16.5px/1.3 var(--f-display); letter-spacing: -.01em; }
+.feats p { color: var(--mute); font-size: 14.5px; margin-top: 8px; }
+.note {
+  margin-top: 28px; padding: 16px 18px; border-left: 2px solid var(--orange);
+  background: var(--orange-tint); border-radius: 0 8px 8px 0; color: var(--fog); font-size: 14px; max-width: 70em;
+}
+@media (max-width: 980px) {
+  .p-top { grid-template-columns: 1fr; gap: 44px; }
+  .product.alt .p-top .shot { order: 0; }
+  .feats { grid-template-columns: 1fr 1fr; }
+  .hero .wrap { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) { .feats { grid-template-columns: 1fr; } .product { padding-block: 72px; } }
+
+/* Recortes de tela */
+.shot { border: 1px solid var(--line); border-radius: 16px; background: var(--ink-2); overflow: hidden; }
+.shot-bar { display: flex; align-items: center; gap: 8px; padding: 12px 16px; border-bottom: 1px solid var(--line); font-size: 12px; color: var(--dim); }
+.shot-bar i { width: 9px; height: 9px; border-radius: 50%; background: var(--ink-3); display: block; }
+.shot-bar span { margin-left: 8px; font-family: var(--f-mono); }
+.shot-body { padding: 22px; }
+.shot-cap { font-size: 12px; color: var(--dim); padding: 0 22px 16px; }
+
+/* Ponto */
+.slots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 16px; }
+.slot { border: 1px solid var(--line); border-radius: 10px; padding: 12px; min-width: 0; }
+.slot.done { border-color: rgba(243,140,35,.45); background: var(--orange-tint); }
+.slot small { display: block; font-size: 11.5px; color: var(--mute); }
+.slot strong { font: 600 20px/1.3 var(--f-mono); font-variant-numeric: tabular-nums; }
+.slot:not(.done) strong { color: var(--dim); }
+.punch { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.punch h4 { margin: 0; font: 600 16px/1.3 var(--f-display); }
+.punch p { font-size: 13px; color: var(--mute); }
+.fake-btn { background: var(--orange); color: #140A00; border: 0; border-radius: 8px; padding: 10px 14px; font: 600 13px/1 var(--f-body); cursor: pointer; }
+.fake-btn:hover { background: var(--orange-soft); }
+.receipt { margin-top: 16px; padding-top: 14px; border-top: 1px dashed var(--line); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font: 400 12px/1.6 var(--f-mono); color: var(--mute); }
+.mood { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.mood span { font-size: 12px; border: 1px solid var(--line); border-radius: 999px; padding: 5px 10px; color: var(--mute); }
+.mood span.on { border-color: var(--orange); color: var(--fog); }
+
+/* Recruta */
+.rank { list-style: none; margin: 0; padding: 0; }
+.rank li { display: grid; grid-template-columns: 52px 1fr; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.rank li:first-child { padding-top: 0; }
+.rank li:last-child { border-bottom: 0; padding-bottom: 0; }
+.score { font: 700 24px/1 var(--f-display); color: var(--orange); font-variant-numeric: tabular-nums; }
+.score small { display: block; font: 500 10px/1.4 var(--f-body); color: var(--dim); letter-spacing: .08em; text-transform: uppercase; margin-top: 4px; }
+.rank strong { font: 600 15px/1.3 var(--f-display); }
+.rank .fx { font-size: 12.5px; color: var(--mute); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.chips span { font-size: 11.5px; border-radius: 6px; padding: 4px 8px; background: var(--ink-3); color: var(--fog); }
+.chips span::before { content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; background: var(--ok); }
+.chips span.na::before { background: var(--dim); }
+.chips span.na { color: var(--mute); }
+
+.flow { list-style: none; margin: 72px 0 0; padding: 0; display: grid; grid-template-columns: repeat(7, 1fr); counter-reset: f; border-top: 1px solid var(--line); }
+.flow li { counter-increment: f; padding: 20px 14px 0 0; min-width: 0; }
+.flow li::before { content: counter(f, decimal-leading-zero); display: block; font: 500 12px/1 var(--f-mono); color: var(--orange); margin-bottom: 12px; }
+.flow strong { display: block; font: 600 15px/1.25 var(--f-display); }
+.flow span { display: block; font-size: 13px; color: var(--mute); margin-top: 6px; }
+@media (max-width: 980px) { .flow { grid-template-columns: repeat(2, 1fr); gap: 0 24px; } .flow li { padding-bottom: 16px; } }
+.recruta-feats { margin-top: 40px; }
+
+/* Gestão */
+.mods { list-style: none; margin: 0; padding: 0; }
+.mods li { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 11px 0; border-bottom: 1px solid var(--line); }
+.mods li:last-child { border-bottom: 0; }
+.mods .t { min-width: 0; }
+.mods strong { display: block; font: 600 14.5px/1.3 var(--f-display); }
+.mods small { display: block; color: var(--mute); font-size: 12.5px; }
+.mods .group { font: 600 11px/1 var(--f-body); letter-spacing: .12em; text-transform: uppercase; color: var(--dim); padding: 16px 0 6px; border-bottom: 0; }
+.mods .group:first-child { padding-top: 0; }
+.switch { flex: none; width: 42px; height: 24px; border-radius: 999px; border: 1px solid var(--line); background: var(--ink-3); position: relative; cursor: pointer; padding: 0; transition: background .2s, border-color .2s; }
+.switch::after { content: ""; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: var(--mute); transition: transform .2s, background .2s; }
+.switch[aria-checked="true"] { background: var(--orange); border-color: var(--orange); }
+.switch[aria-checked="true"]::after { transform: translateX(18px); background: #140A00; }
+.mods-count { font-family: var(--f-mono); color: var(--orange); }
+
+.wa { margin-top: 72px; display: grid; grid-template-columns: .9fr 1.1fr; gap: 56px; align-items: center; }
+.wa > * { min-width: 0; }
+.wa h3 { font: 700 26px/1.2 var(--f-display); }
+.wa p { color: var(--mute); margin-top: 12px; }
+.chat { border: 1px solid var(--line); border-radius: 16px; background: var(--ink-2); padding: 18px; display: flex; flex-direction: column; gap: 10px; }
+.bubble { max-width: 86%; padding: 10px 14px; border-radius: 14px; font-size: 14px; line-height: 1.45; }
+.bubble.me { align-self: flex-end; background: var(--orange); color: #140A00; border-bottom-right-radius: 4px; font-weight: 500; }
+.bubble.bot { align-self: flex-start; background: var(--ink-3); border-bottom-left-radius: 4px; }
+.bubble.bot ul { margin: 6px 0 0; padding-left: 18px; }
+.bubble time { display: block; font: 400 11px/1 var(--f-mono); opacity: .6; margin-top: 6px; text-align: right; }
+@media (max-width: 980px) { .wa { grid-template-columns: 1fr; gap: 28px; } }
+
+/* Forms */
+.q-prog { height: 4px; background: var(--ink-3); border-radius: 4px; overflow: hidden; }
+.q-prog i { display: block; height: 100%; width: 33%; background: var(--orange); }
+.q-meta { display: flex; justify-content: space-between; font: 400 12px/1 var(--f-mono); color: var(--dim); margin: 12px 0 26px; }
+.q-title { font: 600 20px/1.35 var(--f-display); }
+.stars { display: flex; gap: 8px; margin-top: 18px; }
+.stars button { background: none; border: 0; padding: 2px; cursor: pointer; color: var(--ink-3); }
+.stars button.on { color: var(--orange); }
+.stars svg { width: 32px; height: 32px; display: block; }
+.q-next { margin-top: 24px; display: flex; align-items: center; gap: 12px; font-size: 12.5px; color: var(--dim); }
+.drop { margin-top: 26px; padding-top: 18px; border-top: 1px dashed var(--line); }
+.drop h5 { margin: 0 0 12px; font: 600 12px/1 var(--f-body); letter-spacing: .1em; text-transform: uppercase; color: var(--mute); }
+.drop-row { display: grid; grid-template-columns: 34px 1fr 44px; gap: 10px; align-items: center; font: 400 12px/1 var(--f-mono); color: var(--mute); margin-top: 7px; font-variant-numeric: tabular-nums; }
+.drop-row .bar { height: 8px; background: var(--ink-3); border-radius: 3px; overflow: hidden; }
+.drop-row .bar i { display: block; height: 100%; background: var(--mute); }
+.drop-row.hi .bar i { background: var(--orange); }
+.drop-row.hi { color: var(--fog); }
+.drop-row span:last-child { text-align: right; }
+
+/* Prova social */
+.proof { padding-block: 104px; border-top: 1px solid var(--line); }
+.proof-head { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: end; }
+.proof-head > * { min-width: 0; }
+.proof h2 { font-size: clamp(30px, 3.8vw, 46px); line-height: 1.08; font-weight: 800; margin-top: 16px; }
+.proof-head p { color: var(--mute); font-size: 17px; }
+.nums { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 56px; border-top: 1px solid var(--line); }
+.nums div { padding: 26px 20px 0 0; min-width: 0; }
+.nums strong { display: block; font: 800 clamp(34px, 4vw, 52px)/1 var(--f-display); letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+.nums strong sup { color: var(--orange); font-size: .5em; vertical-align: .7em; margin-left: 2px; }
+.nums span { display: block; color: var(--mute); font-size: 14px; margin-top: 10px; }
+.clients { margin-top: 56px; color: var(--dim); font-size: 14px; }
+.clients b { color: var(--fog); font-weight: 600; }
+.quote { margin-top: 48px; max-width: 46em; }
+.quote p { font: 400 21px/1.5 var(--f-display); letter-spacing: -.01em; }
+.quote cite { display: block; font-style: normal; color: var(--mute); font-size: 14px; margin-top: 12px; }
+@media (max-width: 860px) { .proof-head { grid-template-columns: 1fr; gap: 16px; } .nums { grid-template-columns: 1fr 1fr; } .nums div { padding-bottom: 20px; } }
+
+/* FAQ */
+.faq { padding-block: 104px; border-top: 1px solid var(--line); background: var(--ink-1); }
+.faq .wrap { display: grid; grid-template-columns: .8fr 1.2fr; gap: 56px; }
+.faq .wrap > * { min-width: 0; }
+.faq h2 { font-size: clamp(28px, 3.4vw, 40px); line-height: 1.1; margin-top: 16px; }
+details { border-bottom: 1px solid var(--line); }
+details:first-child { border-top: 1px solid var(--line); }
+summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; gap: 20px; padding: 20px 0; font: 600 16.5px/1.4 var(--f-display); }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; color: var(--orange); font: 400 22px/1 var(--f-body); flex: none; transition: transform .2s; }
+details[open] summary::after { transform: rotate(45deg); }
+details p { color: var(--mute); padding: 0 0 22px; max-width: 40em; }
+@media (max-width: 860px) { .faq .wrap { grid-template-columns: 1fr; gap: 24px; } }
+
+/* Contato */
+.cta { padding-block: 112px; border-top: 1px solid var(--line); }
+.cta .wrap { display: grid; grid-template-columns: 1.2fr .8fr; gap: 56px; align-items: end; }
+.cta .wrap > * { min-width: 0; }
+.cta h2 { font-size: clamp(34px, 5vw, 60px); line-height: 1.03; font-weight: 800; }
+.cta h2 em { font-style: normal; color: var(--orange); }
+.cta .lead { color: var(--mute); font-size: 18px; margin-top: 20px; max-width: 32em; }
+.cta .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.contact { list-style: none; margin: 0; padding: 0; }
+.contact li { padding: 16px 0; border-bottom: 1px solid var(--line); }
+.contact li:first-child { border-top: 1px solid var(--line); }
+.contact small { display: block; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); }
+.contact strong { display: block; font: 600 17px/1.4 var(--f-display); margin-top: 4px; user-select: all; }
+@media (max-width: 860px) { .cta .wrap { grid-template-columns: 1fr; } }
+
+footer { border-top: 1px solid var(--line); padding-block: 36px; color: var(--dim); font-size: 13px; }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px; }
+footer img { height: 34px; width: auto; }
+footer .legal { text-align: right; }
+@media (max-width: 600px) { footer .legal { text-align: left; } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#inicio" aria-label="Solute Tec, início">SOLUTE<b>TEC</b></a>
+    <nav aria-label="Sistemas">
+      <a href="#gestao">Gestão</a>
+      <a href="#ponto">Ponto</a>
+      <a href="#recruta">Recruta</a>
+      <a href="#forms">Forms</a>
+      <a href="#perguntas">Perguntas</a>
+    </nav>
+    <a class="btn btn-primary" href="https://wa.me/5532999501615?text=Ol%C3%A1!%20Quero%20conhecer%20os%20sistemas%20da%20Solute%20Tec." target="_blank" rel="noopener">Falar com a equipe</a>
+  </div>
+</header>
+
+<main id="inicio">
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Os sistemas da Solute RH</span>
+      <h1>Tecnologia feita por <em>quem vive RH.</em></h1>
+      <p class="lead">Gestão de equipes, controle de ponto, recrutamento e formulários. Quatro sistemas criados pela Solute RH a partir da rotina de mais de 700 empresas atendidas, para tirar o achismo da gestão de pessoas.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="https://wa.me/5532999501615?text=Ol%C3%A1!%20Quero%20conhecer%20os%20sistemas%20da%20Solute%20Tec." target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.2.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
+          Chamar no WhatsApp
+        </a>
+        <a class="btn btn-ghost" href="#sistemas">Conhecer os sistemas</a>
+      </div>
+      <div class="from">
+        <img src="assets/solute-rh-branca.svg" alt="Solute RH">
+        <span>Desde 2021 fortalecendo negócios através de pessoas</span>
+      </div>
+    </div>
+
+    <aside class="day" aria-label="Exemplo de um dia de trabalho usando os sistemas">
+      <div class="day-head">
+        <strong>Uma terça-feira com a Solute Tec</strong>
+        <span>exemplo</span>
+      </div>
+      <ol>
+        <li><time>08:00</time><div><span class="sys">Solute Ponto</span><p>Marina registrou a entrada pelo celular. O comprovante já está no histórico dela.</p><code>NSR 000184</code></div></li>
+        <li><time>08:30</time><div><span class="sys">Solute Gestão</span><p>O resumo do dia chegou no WhatsApp: 5 entregas e 2 reuniões.</p></div></li>
+        <li><time>10:15</time><div><span class="sys">Solute Recruta</span><p>A requisição preenchida pelo cliente virou um perfil ideal com 7 competências.</p></div></li>
+        <li><time>14:40</time><div><span class="sys">Solute Forms</span><p>Pesquisa de clima com 86% de conclusão. A maior desistência foi na pergunta 9.</p></div></li>
+        <li><time>17:55</time><div><span class="sys">Solute Ponto</span><p>Pedido de ajuste aprovado pelo RH. A marcação original continua guardada.</p></div></li>
+      </ol>
+    </aside>
+  </div>
+</section>
+
+<section class="index" id="sistemas" aria-label="Sistemas">
+  <div class="wrap">
+    <ul>
+      <li><a href="#gestao"><span class="name">Solute <b>Gestão</b></span><span class="what">Tarefas, reuniões, pessoas e feedback num sistema montado para a sua empresa.</span><span class="who">Para empresas que querem a equipe organizada</span><span class="arrow" aria-hidden="true">→</span></a></li>
+      <li><a href="#ponto"><span class="name">Solute <b>Ponto</b></span><span class="what">Controle de ponto pelo navegador, com comprovante a cada batida.</span><span class="who">Para empresas com equipe CLT</span><span class="arrow" aria-hidden="true">→</span></a></li>
+      <li><a href="#recruta"><span class="name">Solute <b>Recruta</b></span><span class="what">Recrutamento e seleção por competências, da requisição ao parecer.</span><span class="who">Para consultorias de R&amp;S</span><span class="arrow" aria-hidden="true">→</span></a></li>
+      <li><a href="#forms"><span class="name">Solute <b>Forms</b></span><span class="what">Formulários de uma pergunta por tela, com resultados que mostram onde as pessoas desistem.</span><span class="who">Para RH, marketing e comercial</span><span class="arrow" aria-hidden="true">→</span></a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ GESTÃO ============ -->
+<section class="product" id="gestao">
+  <div class="wrap">
+    <div class="p-top">
+      <div>
+        <div class="wordmark" aria-label="Solute Gestão">Solute<b>Gestão</b></div>
+        <h2>O sistema de gestão que se molda à sua empresa.</h2>
+        <p class="desc">Tarefas, projetos, reuniões e pessoas no mesmo lugar, com prazos, tempo gasto e produtividade acompanhados em tempo real. Você liga os módulos que a sua operação usa, define setores e permissões, e cada pessoa vê exatamente o que precisa.</p>
+        <div class="for"><span>Donos e gestores</span><span>Líderes de equipe</span><span>RH</span><span>PMEs</span></div>
+        <a class="btn btn-primary" href="https://wa.me/5532999501615?text=Ol%C3%A1!%20Quero%20conhecer%20o%20Solute%20Gest%C3%A3o." target="_blank" rel="noopener">Quero ver o Solute Gestão</a>
+      </div>
+
+      <div class="shot" aria-label="Exemplo da tela de módulos do Solute Gestão">
+        <div class="shot-bar"><i></i><i></i><i></i><span>Módulos da sua empresa</span></div>
+        <div class="shot-body">
+          <ul class="mods" id="mods">
+            <li class="group">Rotina da equipe</li>
+            <li><div class="t"><strong>Tarefas e projetos</strong><small>Lista, Kanban, recorrência e tempo gasto</small></div><button class="switch" role="switch" aria-checked="true" aria-label="Tarefas e projetos"></button></li>
+            <li><div class="t"><strong>Reuniões e agenda</strong><small>Google Meet e Agenda, reunião que vira tarefa</small></div><button class="switch" role="switch" aria-checked="true" aria-label="Reuniões e agenda"></button></li>
+            <li><div class="t"><strong>Acompanhamento de pessoas</strong><small>Reconhecimentos, feedbacks e trajetória</small></div><button class="switch" role="switch" aria-checked="true" aria-label="Acompanhamento de pessoas"></button></li>
+            <li class="group">Áreas da empresa</li>
+            <li><div class="t"><strong>Comercial</strong><small>Leads, propostas, contratos e carteira</small></div><button class="switch" role="switch" aria-checked="false" aria-label="Comercial"></button></li>
+            <li><div class="t"><strong>Marketing</strong><small>Planner, calendário editorial e blog</small></div><button class="switch" role="switch" aria-checked="true" aria-label="Marketing"></button></li>
+            <li><div class="t"><strong>Tráfego pago</strong><small>Anúncios do Meta ligados às vendas</small></div><button class="switch" role="switch" aria-checked="false" aria-label="Tráfego pago"></button></li>
+          </ul>
+        </div>
+        <p class="shot-cap"><span class="mods-count" id="mods-count">4 de 6</span> módulos ligados. Toque nas chaves para montar o seu.</p>
+      </div>
+    </div>
+
+    <div class="feats">
+      <div><h3>Tarefas que não se perdem</h3><p>Prazos, status, categorias, anexos, comentários e mais de um responsável. Em lista ou Kanban, com tarefas recorrentes.</p></div>
+      <div><h3>Tempo gasto sem planilha</h3><p>O sistema sugere o tempo de cada tarefa a partir de quando ela entrou em andamento. A equipe só confirma.</p></div>
+      <div><h3>Reunião que vira tarefa</h3><p>Cole a transcrição e o sistema sugere as tarefas combinadas. O gestor aprova cada uma antes de entrar na rotina.</p></div>
+      <div><h3>Feedback com regra clara</h3><p>Reconhecimento é público. Feedback, ponto de melhoria e situação ficam só entre os líderes de cada pessoa.</p></div>
+      <div><h3>Mural de elogios</h3><p>A equipe reconhece o trabalho dos colegas em público, e cada pessoa acompanha a própria trajetória.</p></div>
+      <div><h3>Chat e assistente da equipe</h3><p>Conversas internas e um assistente que responde dúvidas com base no conhecimento que a sua empresa cadastrar.</p></div>
+      <div><h3>Rotina e lembretes</h3><p>Itens com horário, funções atribuídas e avisos para toda a equipe.</p></div>
+      <div><h3>Chamados e sugestões</h3><p>Pedidos internos e ideias da equipe num fluxo só, com histórico de dúvidas por tarefa.</p></div>
+      <div><h3>Permissões por pessoa</h3><p>Setores, cargos e acessos finos. Cada líder vê apenas as pessoas e os setores sob a responsabilidade dele.</p></div>
+    </div>
+
+    <div class="wa">
+      <div>
+        <span class="eyebrow">Assistente no WhatsApp</span>
+        <h3>Do WhatsApp ao relatório mensal, tudo automático.</h3>
+        <p>Às 08:30 cada pessoa recebe as entregas do dia. No meio da tarde, basta perguntar "o que tenho hoje?", "minhas reuniões" ou "tarefas atrasadas". No fim do mês, o relatório chega pronto.</p>
+      </div>
+      <div class="chat" aria-label="Exemplo de conversa com o assistente">
+        <div class="bubble me">tarefas atrasadas<time>14:02</time></div>
+        <div class="bubble bot">Você tem 2 tarefas atrasadas:
+          <ul><li>Revisar proposta da Datafor (venceu ontem)</li><li>Enviar escala de outubro (venceu segunda)</li></ul>
+          <time>14:02</time>
+        </div>
+        <div class="bubble me">e minhas reuniões?<time>14:03</time></div>
+        <div class="bubble bot">Hoje às 16:00: Alinhamento comercial, no Google Meet.<time>14:03</time></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PONTO ============ -->
+<section class="product alt" id="ponto">
+  <div class="wrap">
+    <div class="p-top">
+      <div>
+        <img class="logo" src="assets/solute-ponto.svg" alt="Solute Ponto">
+        <h2>Controle de ponto simples para a equipe e seguro para a empresa.</h2>
+        <p class="desc">O colaborador bate o ponto pelo navegador do celular ou do computador, sem instalar nada. O RH acompanha o dia em tempo real, trata ajustes sem apagar nenhuma marcação e fecha o mês com relatório de saldo e os arquivos oficiais.</p>
+        <div class="for"><span>Colaborador</span><span>Gestor</span><span>RH</span><span>Equipes CLT</span></div>
+        <a class="btn btn-primary" href="https://wa.me/5532999501615?text=Ol%C3%A1!%20Quero%20conhecer%20o%20Solute%20Ponto." target="_blank" rel="noopener">Quero ver o Solute Ponto</a>
+      </div>
+
+      <div class="shot" aria-label="Exemplo da tela inicial do colaborador no Solute Ponto">
+        <div class="shot-bar"><i></i><i></i><i></i><span>ponto.soluterh.com.br</span></div>
+        <div class="shot-body">
+          <div class="punch">
+            <div><h4>Seu dia de hoje</h4><p>Terça-feira, 14 de outubro</p></div>
+            <button class="fake-btn" id="punch-btn" type="button">Bater saída</button>
+          </div>
+          <div class="slots">
+            <div class="slot done"><small>Entrada</small><strong>08:00</strong></div>
+            <div class="slot done"><small>Saída almoço</small><strong>12:02</strong></div>
+            <div class="slot done"><small>Volta almoço</small><strong>13:01</strong></div>
+            <div class="slot" id="slot-out"><small>Saída</small><strong>--:--</strong></div>
+          </div>
+          <div class="mood" aria-label="Check-in de bem-estar"><span>Ótimo</span><span class="on">Bem</span><span>Neutro</span><span>Desanimado</span><span>Mal</span></div>
+          <div class="receipt"><span id="nsr">Comprovante NSR 000186</span><span>código 9c41…e07a</span></div>
+        </div>
+        <p class="shot-cap">Tela de exemplo. Cada batida gera um comprovante, e o código liga a marcação à anterior.</p>
+      </div>
+    </div>
+
+    <div class="feats">
+      <div><h3>Sem relógio e sem aplicativo</h3><p>Funciona no navegador. A pessoa entra com e-mail ou CPF, e a tela já mostra qual é a próxima batida.</p></div>
+      <div><h3>Comprovante a cada batida</h3><p>Cada registro gera um comprovante em PDF. Uma vez por dia, o colaborador recebe o resumo por e-mail.</p></div>
+      <div><h3>Foto e localização opcionais</h3><p>A empresa decide se pede foto e localização na batida. As fotos ficam visíveis só para o dono e para o RH.</p></div>
+      <div><h3>Painel do dia</h3><p>Quem está trabalhando, quem está no almoço, quem ainda não bateu e quem chegou atrasado, em tempo real.</p></div>
+      <div><h3>Ajustes sem apagar nada</h3><p>O colaborador pede a correção com motivo e anexo. A marcação original fica guardada, e o ajuste registra quem fez e por quê.</p></div>
+      <div><h3>Relatório com saldo</h3><p>Horas previstas, trabalhadas e saldo por pessoa e período, com exportação para planilha.</p></div>
+      <div><h3>Jornadas, feriados e ausências</h3><p>Horários por dia da semana, feriados nacionais carregados automaticamente, faltas, DSR e lançamentos de banco de horas.</p></div>
+      <div><h3>AFD e AEJ nos leiautes oficiais</h3><p>Os arquivos da fiscalização saem do sistema, com numeração sequencial que nunca se repete.</p></div>
+      <div><h3>Um cuidado a mais com a equipe</h3><p>Check-in de humor opcional e sigiloso. Quando o desânimo se repete, o RH recebe um aviso para se aproximar com discrição.</p></div>
+    </div>
+    <p class="note">O Solute Ponto foi construído sobre os requisitos da Portaria 671/2021 (REP-P). O registro do programa no INPI e a validação oficial junto ao Ministério do Trabalho estão em andamento.</p>
+  </div>
+</section>
+
+<!-- ============ RECRUTA ============ -->
+<section class="product" id="recruta">
+  <div class="wrap">
+    <div class="p-top">
+      <div>
+        <img class="logo" src="assets/solute-recruta.svg" alt="Solute Recruta">
+        <h2>A requisição vira perfil ideal, o perfil vira roteiro, e a entrevista vira parecer.</h2>
+        <p class="desc">O Solute Recruta conduz o processo seletivo inteiro da consultoria, do pedido do cliente ao relatório final. Cada nota mostra a evidência que a gerou, e a decisão continua sempre com a recrutadora.</p>
+        <div class="for"><span>Consultorias de R&amp;S</span><span>Recrutadoras</span><span>Gestores de consultoria</span></div>
+        <a class="btn btn-primary" href="https://wa.me/5532999501615?text=Ol%C3%A1!%20Quero%20conhecer%20o%20Solute%20Recruta." target="_blank" rel="noopener">Quero ver o Solute Recruta</a>
+      </div>
+
+      <div class="shot" aria-label="Exemplo do ranking de candidatos no Solute Recruta">
+        <div class="shot-bar"><i></i><i></i><i></i><span>Analista Financeiro Pleno · ranking</span></div>
+        <div class="shot-body">
+          <ol class="rank">
+            <li><div class="score">91<small>match</small></div><div><strong>Camila R.</strong><div class="fx">Aderência alta · entrevistada</div><div class="chips"><span>Excel avançado no currículo</span><span>Conciliação bancária</span><span>DISC próximo do alvo</span></div></div></li>
+            <li><div class="score">84<small>match</small></div><div><strong>Diego M.</strong><div class="fx">Aderência alta · teste concluído</div><div class="chips"><span>Formação em Contábeis</span><span class="na">Inglês: não identificado</span></div></div></li>
+            <li><div class="score">72<small>match</small></div><div><strong>Patrícia L.</strong><div class="fx">Aderência média · em triagem</div><div class="chips"><span>4 anos na função</span><span class="na">ERP: não identificado</span></div></div></li>
+          </ol>
+        </div>
+        <p class="shot-cap">Exemplo. "Não identificado" não é "não atende". Ninguém é eliminado automaticamente.</p>
+      </div>
+    </div>
+
+    <ol class="flow" aria-label="Etapas do processo no Solute Recruta">
+      <li><strong>Requisição</strong><span>O cliente preenche por link, ou o sistema lê o descritivo da vaga.</span></li>
+      <li><strong>Perfil ideal</strong><span>Competências com peso, alvo comportamental e cultural.</span></li>
+      <li><strong>Divulgação</strong><span>Anúncio escrito para LinkedIn, Catho, Indeed, WhatsApp e Instagram.</span></li>
+      <li><strong>Candidatos</strong><span>Leitura automática de currículos e importação em lote.</span></li>
+      <li><strong>Triagem</strong><span>Nota por critério e match explicável.</span></li>
+      <li><strong>Entrevista e testes</strong><span>Roteiro por competências e questionários por link.</span></li>
+      <li><strong>Parecer</strong><span>Parecer ao cliente e relatório final do processo.</span></li>
+    </ol>
+
+    <div class="feats recruta-feats">
+      <div><h3>Questionários comportamentais</h3><p>DISC, Cinco Grandes Fatores, motivadores, fit cultural e preferências de tipo, enviados por link e com resultado direto no processo.</p></div>
+      <div><h3>Entrevista por competências</h3><p>Roteiro gerado do perfil, com perguntas no método STAR e o que observar em cada resposta.</p></div>
+      <div><h3>Parecer pronto para o cliente</h3><p>Texto corrido, sem notas nem percentuais, gerado a partir da análise e editável antes do envio.</p></div>
+      <div><h3>Funil e quadro livre</h3><p>Funil com 16 etapas e um quadro em que a recrutadora cria colunas como "ligar hoje" e arrasta os cartões.</p></div>
+      <div><h3>Prazos e indicadores</h3><p>SLA combinado com o cliente, conversão do funil, onde o tempo foi gasto e resumo de status para o e-mail semanal.</p></div>
+      <div><h3>Banco de talentos que trabalha sozinho</h3><p>Ao abrir uma vaga, o sistema sugere quem já está no banco com match de 84 ou mais.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FORMS ============ -->
+<section class="product alt" id="forms">
+  <div class="wrap">
+    <div class="p-top">
+      <div>
+        <div class="wordmark" aria-label="Solute Forms">Solute<b>Forms</b></div>
+        <h2>Uma pergunta por tela, e você vê onde cada pessoa parou.</h2>
+        <p class="desc">Monte pesquisas, inscrições e formulários de captação que parecem uma conversa. Quem responde não precisa de login. Você acompanha a taxa de conclusão, a desistência pergunta a pergunta e trata cada resposta num Kanban.</p>
+        <div class="for"><span>Pesquisa de clima</span><span>Captação de leads</span><span>Inscrições</span><span>Campanhas</span></div>
+        <a class="btn btn-primary" href="https://wa.me/5532999501615?text=Ol%C3%A1!%20Quero%20conhecer%20o%20Solute%20Forms." target="_blank" rel="noopener">Quero ver o Solute Forms</a>
+      </div>
+
+      <div class="shot" aria-label="Exemplo de formulário no Solute Forms">
+        <div class="shot-bar"><i></i><i></i><i></i><span>Pesquisa de clima 2026</span></div>
+        <div class="shot-body">
+          <div class="q-prog"><i></i></div>
+          <div class="q-meta"><span>Pergunta 4 de 12</span><span>~3 min</span></div>
+          <p class="q-title">Como você avalia a comunicação com a sua liderança?</p>
+          <div class="stars" id="stars" role="group" aria-label="Avaliação de 1 a 5"></div>
+          <div class="q-next"><button class="fake-btn" type="button">OK</button><span>ou pressione Enter</span></div>
+          <div class="drop">
+            <h5>Desistência por pergunta</h5>
+            <div class="drop-row"><span>P7</span><div class="bar"><i style="width:18%"></i></div><span>3%</span></div>
+            <div class="drop-row"><span>P8</span><div class="bar"><i style="width:24%"></i></div><span>4%</span></div>
+            <div class="drop-row hi"><span>P9</span><div class="bar"><i style="width:68%"></i></div><span>11%</span></div>
+            <div class="drop-row"><span>P10</span><div class="bar"><i style="width:12%"></i></div><span>2%</span></div>
+          </div>
+        </div>
+        <p class="shot-cap">Exemplo com dados ilustrativos.</p>
+      </div>
+    </div>
+
+    <div class="feats">
+      <div><h3>17 tipos de pergunta</h3><p>Múltipla escolha, escolha por imagem, estrelas, escala de opinião, matriz, data, telefone, upload de arquivo e outros.</p></div>
+      <div><h3>Abertura e encerramento do seu jeito</h3><p>Telas de boas-vindas e de agradecimento personalizadas, com redirecionamento para outro endereço no final.</p></div>
+      <div><h3>Link, QR code e UTM</h3><p>Compartilhe por link ou QR code e saiba de qual canal e campanha veio cada resposta.</p></div>
+      <div><h3>Respostas parciais guardadas</h3><p>Quem abandona no meio não some. Você vê o que a pessoa já respondeu e em que ponto parou.</p></div>
+      <div><h3>Resultados em três visões</h3><p>Resumo com visualizações, conclusão e tempo médio, tabela tipo planilha e caixa de entrada.</p></div>
+      <div><h3>Kanban das respostas</h3><p>Mova cada respondente por etapas de atendimento. Útil para dar seguimento a leads e inscritos.</p></div>
+    </div>
+    <p class="note">O Solute Forms também vem dentro do Solute Gestão, com formulários internos para a equipe: anônimos de verdade, agendados e com cobrança automática de quem ainda não respondeu. Em breve: análise de sentimento e palavras-chave nas respostas de texto.</p>
+  </div>
+</section>
+
+<!-- ============ PROVA ============ -->
+<section class="proof" aria-labelledby="proof-title">
+  <div class="wrap">
+    <div class="proof-head">
+      <div>
+        <span class="eyebrow">Por trás dos sistemas</span>
+        <h2 id="proof-title">Método antes de opinião.</h2>
+      </div>
+      <p>A Solute Tec é a frente de tecnologia da Solute RH, consultoria de gestão de pessoas que atende empresas de todo o Brasil. Cada sistema nasceu de um problema que a equipe resolvia na mão, todos os dias, nos clientes.</p>
+    </div>
+    <div class="nums">
+      <div><strong>700<sup>+</sup></strong><span>empresas atendidas pela Solute RH</span></div>
+      <div><strong>96</strong><span>de NPS no 1º semestre de 2026</span></div>
+      <div><strong>5,0</strong><span>de nota no Google</span></div>
+      <div><strong>16 mil<sup>+</sup></strong><span>profissionais formados, com certificação MEC</span></div>
+    </div>
+    <p class="clients">Empresas que já confiaram na Solute RH: <b>TIM, Adidas, Fisk, Hope, Mundial Alumínio, NBC Bank, DAS Brasil, Datafor</b> e outras.</p>
+    <blockquote class="quote">
+      <p>"A metodologia da Rose é prática, validada e gerou resultados visíveis em poucos meses."</p>
+      <cite>Riane Lopes, Faculdade Líbano</cite>
+    </blockquote>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="faq" id="perguntas" aria-labelledby="faq-title">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Perguntas frequentes</span>
+      <h2 id="faq-title">O que as empresas perguntam antes de contratar.</h2>
+    </div>
+    <div>
+      <details open><summary>Preciso contratar os quatro sistemas?</summary><p>Não. Cada sistema é contratado separadamente. Você começa pelo que resolve a dor mais urgente e soma os outros quando fizer sentido.</p></details>
+      <details><summary>Quanto custa?</summary><p>O valor depende do tamanho da equipe e dos módulos que a sua empresa vai usar. Chame a equipe no WhatsApp para receber uma proposta personalizada.</p></details>
+      <details><summary>Como o Solute Gestão se adapta à minha empresa?</summary><p>Na implantação, ligamos só os módulos que a sua operação usa, cadastramos setores e cargos e definimos o que cada pessoa pode ver e fazer. Dá para ligar novos módulos depois.</p></details>
+      <details><summary>Preciso instalar algum aplicativo?</summary><p>Não. Todos os sistemas funcionam no navegador, no computador ou no celular. Basta ter internet.</p></details>
+      <details><summary>O Solute Ponto é homologado?</summary><p>Ele foi construído sobre os requisitos da Portaria 671/2021 para ponto por programa (REP-P) e já gera AFD e AEJ nos leiautes oficiais. O registro no INPI e a validação oficial junto ao Ministério do Trabalho estão em andamento. Falamos sobre a situação atual com transparência na apresentação.</p></details>
+      <details><summary>O Solute Recruta usa inteligência artificial para escolher candidatos?</summary><p>Não. Ele usa um motor de análise com regras claras, e cada nota mostra a evidência que a gerou. Nenhum candidato é eliminado automaticamente. A decisão é sempre da recrutadora.</p></details>
+      <details><summary>Como ficam os dados da minha equipe?</summary><p>Cada empresa só acessa os próprios dados, as senhas são guardadas criptografadas e as ações do RH ficam registradas. No Solute Ponto, a pessoa dá ciência do aviso de LGPD na primeira batida, e as fotos têm prazo de guarda definido pela empresa.</p></details>
+      <details><summary>Quem dá suporte?</summary><p>A própria equipe da Solute RH. No Solute Ponto, o atendimento fica dentro do sistema, por chamado.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTATO ============ -->
+<section class="cta" id="contato" aria-labelledby="cta-title">
+  <div class="wrap">
+    <div>
+      <h2 id="cta-title">Veja os sistemas <em>funcionando</em> na rotina da sua empresa.</h2>
+      <p class="lead">A gente entende como a sua equipe trabalha hoje e mostra, na prática, o que muda com a Solute Tec.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="https://wa.me/5532999501615?text=Ol%C3%A1!%20Quero%20conhecer%20os%20sistemas%20da%20Solute%20Tec." target="_blank" rel="noopener">Agendar uma apresentação</a>
+      </div>
+    </div>
+    <ul class="contact">
+      <li><small>WhatsApp</small><strong>(32) 99950-1615</strong></li>
+      <li><small>E-mail</small><strong>contato@soluterh.com.br</strong></li>
+      <li><small>Atendimento</small><strong>Seg. a qui., 8h às 18h · sex., 8h às 17h</strong></li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <img src="assets/solute-rh-branca.svg" alt="Solute RH">
+    <div class="legal">Solute Tec é uma frente da Solute RH · CNPJ 42.692.955/0001-05<br>R. Batista de Oliveira, 1164, sala 607, Centro, Juiz de Fora/MG</div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // Gestão: chaves de módulos
+  var mods = document.getElementById('mods');
+  var count = document.getElementById('mods-count');
+  function recount() {
+    var all = mods.querySelectorAll('.switch');
+    var on = mods.querySelectorAll('.switch[aria-checked="true"]');
+    count.textContent = on.length + ' de ' + all.length;
+  }
+  mods.addEventListener('click', function (e) {
+    var sw = e.target.closest('.switch');
+    if (!sw) return;
+    sw.setAttribute('aria-checked', sw.getAttribute('aria-checked') === 'true' ? 'false' : 'true');
+    recount();
+  });
+
+  // Ponto: bater saída
+  var btn = document.getElementById('punch-btn');
+  btn.addEventListener('click', function () {
+    var slot = document.getElementById('slot-out');
+    if (slot.classList.contains('done')) return;
+    var d = new Date();
+    var hh = String(d.getHours()).padStart(2, '0'), mm = String(d.getMinutes()).padStart(2, '0');
+    slot.classList.add('done');
+    slot.querySelector('strong').textContent = hh + ':' + mm;
+    document.getElementById('nsr').textContent = 'Comprovante NSR 000187';
+    btn.textContent = 'Ponto registrado';
+  });
+
+  // Forms: estrelas
+  var stars = document.getElementById('stars');
+  var path = 'M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z';
+  for (var i = 1; i <= 5; i++) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.dataset.v = i;
+    b.setAttribute('aria-label', i + (i === 1 ? ' estrela' : ' estrelas'));
+    b.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="' + path + '"/></svg>';
+    if (i <= 4) b.classList.add('on');
+    stars.appendChild(b);
+  }
+  stars.addEventListener('click', function (e) {
+    var b = e.target.closest('button');
+    if (!b) return;
+    var v = +b.dataset.v;
+    stars.querySelectorAll('button').forEach(function (s) { s.classList.toggle('on', +s.dataset.v <= v); });
+  });
+})();
+</script>
+</body>
+</html>
