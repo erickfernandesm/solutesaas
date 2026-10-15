@@ -47,7 +47,7 @@ export default function EspecialPonto() {
 
   return (
     <>
-      <section className="relative overflow-hidden border-t border-ink-600 bg-ink-900/40 py-20 sm:py-24">
+      <section className="relative overflow-hidden border-t border-ink-600 bg-ink-900/40 py-12 sm:py-20 lg:py-24">
         <Container>
           <div className="grid gap-14 lg:grid-cols-[1fr_1.35fr] lg:items-center">
             <div>
@@ -121,14 +121,14 @@ export default function EspecialPonto() {
         </Container>
       </section>
 
-      <section className="py-20 sm:py-24">
+      <section className="py-12 sm:py-20 lg:py-24">
         <Container>
           <SectionHeading
             center
             title="Um cuidado a mais com quem trabalha."
             text="O Solute Ponto é um dos poucos sistemas de ponto com um olhar para a saúde emocional da equipe. O acompanhamento foi construído a partir de critérios do DSM-5 e do PHQ-9, referências usadas por profissionais de saúde para observar sinais de desânimo persistente."
           />
-          <div className="mt-14 grid gap-4 md:grid-cols-3">
+          <div className="mt-8 sm:mt-14 grid gap-4 md:grid-cols-3">
             {[
               { i: HeartPulse, t: "Check-in de humor opcional", d: "Na entrada, a pessoa pode dizer como está, em cinco opções: Ótimo, Bem, Neutro, Desanimado ou Mal." },
               { i: EyeOff, t: "Sigiloso de verdade", d: "Os colegas não veem as respostas. É um sinal de cuidado, não um diagnóstico médico." },

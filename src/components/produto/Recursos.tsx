@@ -35,10 +35,10 @@ export default function Recursos({ p }: { p: Produto }) {
   const grade = ultimoLargo ? p.grupos.slice(0, -1) : p.grupos;
   const largo = ultimoLargo ? p.grupos[n - 1] : null;
   return (
-    <section id="recursos" className="border-t border-ink-600 bg-ink-900/40 py-20 sm:py-24">
+    <section id="recursos" className="border-t border-ink-600 bg-ink-900/40 py-12 sm:py-20 lg:py-24">
       <Container>
         <SectionHeading title={`Tudo o que vem no ${p.nome}.`} />
-        <div className={`mt-14 grid gap-x-12 gap-y-10 md:grid-cols-2 ${n === 3 ? "lg:grid-cols-3" : ""}`}>
+        <div className={`mt-8 sm:mt-14 grid gap-x-12 gap-y-10 md:grid-cols-2 ${n === 3 ? "lg:grid-cols-3" : ""}`}>
           {grade.map((g, gi) => (
             <Reveal key={g.titulo} delay={(gi % 2) * 0.06}>
               <Titulo texto={g.titulo} />
@@ -57,7 +57,7 @@ export default function Recursos({ p }: { p: Produto }) {
           </Reveal>
         )}
         {p.sobMedida && (
-          <Reveal className="mt-16">
+          <Reveal className="mt-10 lg:mt-16">
             <div className="relative overflow-hidden rounded-3xl border border-brand/40 bg-ink-850">
               <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-brand/20 blur-[90px]" aria-hidden="true" />
               <div className="relative grid gap-10 p-8 sm:p-10 lg:grid-cols-[1.2fr_1fr] lg:items-center">
@@ -86,7 +86,7 @@ export default function Recursos({ p }: { p: Produto }) {
         )}
         {p.nota && (
           <Reveal>
-            <p className="mt-14 rounded-2xl border border-brand/25 bg-brand/[.06] p-5 text-[14.5px] leading-relaxed text-fog-300">
+            <p className="mt-8 sm:mt-14 rounded-2xl border border-brand/25 bg-brand/[.06] p-5 text-[14.5px] leading-relaxed text-fog-300">
               {p.nota}
             </p>
           </Reveal>

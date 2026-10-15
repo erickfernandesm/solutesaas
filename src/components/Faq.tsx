@@ -9,10 +9,10 @@ import { Container, SectionHeading } from "@/components/ui";
 export default function Faq({ perguntas, titulo = "O que as empresas perguntam antes de contratar." }: { perguntas: Pergunta[]; titulo?: string }) {
   const [aberta, setAberta] = useState<number | null>(0);
   return (
-    <section id="perguntas" className="border-t border-ink-600 pb-14 pt-20 sm:pb-16 sm:pt-24">
-      <Container className="grid gap-12 lg:grid-cols-[.85fr_1.15fr]">
+    <section id="perguntas" className="border-t border-ink-600 pb-10 pt-12 sm:pb-16 sm:pt-24">
+      <Container className="grid gap-4 lg:grid-cols-[.85fr_1.15fr] lg:gap-12">
         <SectionHeading title={titulo} />
-        <div className="divide-y divide-ink-600 border-y border-ink-600">
+        <div className="divide-y divide-ink-600 border-b border-ink-600 lg:border-t">
           {perguntas.map((q, i) => {
             const open = aberta === i;
             return (

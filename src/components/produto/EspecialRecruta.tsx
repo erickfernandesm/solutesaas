@@ -26,14 +26,14 @@ export default function EspecialRecruta() {
   const e = etapas[sel];
   return (
     <>
-      <section className="relative border-t border-ink-600 bg-ink-900/40 py-20 sm:py-24">
+      <section className="relative border-t border-ink-600 bg-ink-900/40 py-12 sm:py-20 lg:py-24">
         <Container>
           <SectionHeading
             title={<>Da requisição ao parecer, <span className="text-gradient">numa ferramenta só.</span></>}
             text="Toque em cada etapa para ver o que o Solute Recruta faz e o que entrega."
           />
 
-          <Reveal className="mt-14">
+          <Reveal className="mt-8 sm:mt-14">
             <div className="relative">
               <div className="absolute left-0 right-0 top-[27px] hidden h-px bg-ink-500 md:block" aria-hidden="true" />
               <motion.div
@@ -90,14 +90,14 @@ export default function EspecialRecruta() {
         </Container>
       </section>
 
-      <section className="py-20 sm:py-24">
+      <section className="py-12 sm:py-20 lg:py-24">
         <Container>
           <SectionHeading
             center
             title="Critério no lugar de achismo."
             text="O Solute Recruta usa um motor de análise com regras claras. Nada de caixa-preta."
           />
-          <div className="mt-14 grid gap-4 md:grid-cols-3">
+          <div className="mt-8 sm:mt-14 grid gap-4 md:grid-cols-3">
             {principios.map((b, k) => (
               <Reveal key={b.t} delay={k * 0.08} className="h-full">
                 <GlowCard className="h-full">

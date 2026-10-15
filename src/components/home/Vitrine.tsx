@@ -24,7 +24,7 @@ export default function Vitrine() {
   }, [ativo, pausado]);
 
   return (
-    <section id="por-dentro" className="relative py-20 sm:py-24">
+    <section id="por-dentro" className="relative py-12 sm:py-20 lg:py-24">
       <Container>
         <SectionHeading
           center

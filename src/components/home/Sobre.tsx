@@ -11,7 +11,7 @@ const marcos = [
 
 export default function Sobre() {
   return (
-    <section id="sobre" className="relative border-t border-ink-600 bg-ink-900/40 py-20 sm:py-24">
+    <section id="sobre" className="relative border-t border-ink-600 bg-ink-900/40 py-12 sm:py-20 lg:py-24">
       <Container className="grid gap-16 lg:grid-cols-[1.1fr_1fr]">
         <div>
           <SectionHeading

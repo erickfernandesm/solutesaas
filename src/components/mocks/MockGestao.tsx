@@ -709,10 +709,10 @@ function Detalhe({
     <div className="absolute inset-0 z-30 flex justify-end bg-black/50" onMouseDown={(e) => e.target === e.currentTarget && aoFechar()}>
       <aside role="dialog" aria-modal="true" aria-label={t.titulo} className="flex h-full w-full max-w-[480px] flex-col border-l border-slate-700 bg-slate-900 shadow-2xl">
         <div className="flex shrink-0 items-center gap-2 border-b border-slate-700 px-4 py-2.5">
-          <span className="inline-flex items-center gap-1.5 text-[13px] font-medium text-slate-400">
+          <button type="button" onClick={aoFechar} className="inline-flex items-center gap-1.5 rounded-md px-1.5 py-0.5 text-[13px] font-medium text-slate-400 transition hover:bg-slate-800 hover:text-slate-200">
             <Ico d="M19 12H5M12 19l-7-7 7-7" s={15} w={2} />
             {voltar}
-          </span>
+          </button>
           <button type="button" onClick={aoFechar} aria-label="Fechar" className="ml-auto rounded-md p-1 text-slate-400 hover:bg-slate-800 hover:text-slate-200">
             <Ico d={FECHAR} s={18} w={2} />
           </button>
@@ -1094,7 +1094,12 @@ function Painel({ tarefas, irPara, abrir }: { tarefas: Tarefa[]; irPara: (v: Vis
                       <span className="block truncate text-[13.5px] font-medium text-slate-100">{t.titulo}</span>
                       <span className="mt-0.5 block text-xs text-slate-400">{t.prazo ? `Prazo: ${prazoTxt(t)}` : "Sem prazo"}</span>
                     </span>
-                    <SeloTarefa t={t} />
+                    <span className="flex shrink-0 flex-wrap items-center justify-end gap-1.5">
+                      {temDuvida(t) && (
+                        <Selo texto="Dúvida" cor="bg-sky-100 text-sky-700" />
+                      )}
+                      <SeloTarefa t={t} />
+                    </span>
                   </button>
                 ))}
               </div>

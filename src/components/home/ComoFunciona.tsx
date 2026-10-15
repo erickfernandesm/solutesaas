@@ -10,7 +10,7 @@ const passos = [
 
 export default function ComoFunciona() {
   return (
-    <section id="como-funciona" className="relative border-t border-ink-600 py-20 sm:py-24">
+    <section id="como-funciona" className="relative border-t border-ink-600 py-12 sm:py-20 lg:py-24">
       <Container>
         <SectionHeading
           center

@@ -29,14 +29,14 @@ export default function EspecialGestao() {
 
   return (
     <>
-      <section className="relative overflow-hidden border-t border-ink-600 bg-ink-900/40 py-20 sm:py-24">
+      <section className="relative overflow-hidden border-t border-ink-600 bg-ink-900/40 py-12 sm:py-20 lg:py-24">
         <div className="bg-dots pointer-events-none absolute inset-0 opacity-50 [mask-image:radial-gradient(ellipse_at_center,#000_15%,transparent_70%)]" aria-hidden="true" />
         <Container className="relative">
           <SectionHeading
             title={<>Monte o Solute Gestão <span className="text-gradient">do jeito da sua empresa.</span></>}
             text="Cada empresa liga os módulos que usa. O menu da equipe mostra só o que foi contratado, e as permissões definem o que cada pessoa vê. Experimente abaixo."
           />
-          <div className="mt-14 grid gap-6 lg:grid-cols-[1.5fr_1fr]">
+          <div className="mt-8 sm:mt-14 grid gap-6 lg:grid-cols-[1.5fr_1fr]">
             <Reveal>
               <div className="grid gap-3 sm:grid-cols-2">
                 {modulos.map((m) => {
@@ -105,7 +105,7 @@ export default function EspecialGestao() {
         </Container>
       </section>
 
-      <section className="py-20 sm:py-24">
+      <section className="py-12 sm:py-20 lg:py-24">
         <Container className="grid items-center gap-14 lg:grid-cols-2">
           <SectionHeading
             title="Do WhatsApp ao relatório mensal, tudo automático."

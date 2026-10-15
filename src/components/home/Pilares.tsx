@@ -3,13 +3,13 @@ import { Container, CountUp, GlowCard, Reveal, SectionHeading } from "@/componen
 
 export default function Pilares() {
   return (
-    <section className="py-20 sm:py-24">
+    <section className="py-12 sm:py-20 lg:py-24">
       <Container>
         <SectionHeading
           title="Sistemas feitos por uma consultoria de RH, não por quem só vende software."
           text="Antes de virar sistema, cada funcionalidade foi um processo aplicado em empresas reais pela equipe da Solute RH."
         />
-        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 sm:mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {pilares.map((b, i) => (
             <Reveal key={b.titulo} delay={i * 0.06} className="h-full">
               <GlowCard className="h-full">

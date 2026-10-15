@@ -27,7 +27,7 @@ export default function Ecossistema() {
           text="Contrate só o que a sua empresa precisa agora e some os outros quando fizer sentido. Todos rodam no navegador, sem nada para instalar."
         />
 
-        <div className="mt-16 grid gap-4 lg:grid-cols-6">
+        <div className="mt-8 grid gap-4 sm:mt-16 lg:grid-cols-6">
           {/* Gestão */}
           <Reveal className="lg:col-span-4 lg:row-span-2">
             <GlowCard className="h-full">

@@ -27,13 +27,13 @@ export default function EspecialForms() {
   const [fam, setFam] = useState<number | null>(null);
   return (
     <>
-      <section className="relative overflow-hidden border-t border-ink-600 bg-ink-900/40 py-20 sm:py-24">
+      <section className="relative overflow-hidden border-t border-ink-600 bg-ink-900/40 py-12 sm:py-20 lg:py-24">
         <Container>
           <SectionHeading
             title={<>Pergunte do jeito certo <span className="text-gradient">para cada resposta.</span></>}
             text="Seis famílias de perguntas, com regras por pergunta: obrigatória, embaralhar opções, limite de escolhas, mínimo e máximo, opção Outro."
           />
-          <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-8 sm:mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {familias.map((f, i) => (
               <Reveal key={f.nome} delay={(i % 3) * 0.06} className="h-full">
                 <div
@@ -60,10 +60,10 @@ export default function EspecialForms() {
         </Container>
       </section>
 
-      <section className="py-20 sm:py-24">
+      <section className="py-12 sm:py-20 lg:py-24">
         <Container>
           <SectionHeading center title="Um formulário para cada conversa da empresa." />
-          <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-8 sm:mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {usos.map((b, k) => (
               <Reveal key={b.t} delay={k * 0.06} className="h-full">
                 <GlowCard className="h-full">

@@ -47,7 +47,7 @@ export default function ProdutoHero({ slug }: { slug: Slug }) {
           </motion.p>
         </div>
 
-        <motion.ul {...sobe(0.3)} className={`mx-auto mt-12 grid gap-3 ${p.chamadas.length === 4 ? "max-w-6xl sm:grid-cols-2 lg:grid-cols-4" : "max-w-4xl sm:grid-cols-3"}`}>
+        <motion.ul {...sobe(0.3)} className={`mx-auto mt-8 grid gap-3 lg:mt-12 ${p.chamadas.length === 4 ? "max-w-6xl sm:grid-cols-2 lg:grid-cols-4" : "max-w-4xl sm:grid-cols-3"}`}>
           {p.chamadas.map((c) => (
             <li key={c.titulo} className="flex items-start gap-3 rounded-2xl border border-ink-600 bg-ink-900/70 p-4 backdrop-blur">
               <span className="grid h-9 w-9 flex-none place-items-center rounded-xl text-brand" style={{ backgroundColor: "rgba(243,140,35,.12)" }}>
@@ -69,9 +69,9 @@ export default function ProdutoHero({ slug }: { slug: Slug }) {
         </motion.div>
         <p className="mt-4 text-center text-[12.5px] text-fog-600">Tela de demonstração com dados de exemplo. Clique para interagir.</p>
 
-        <div className="mt-16 grid gap-px overflow-hidden rounded-3xl border border-ink-600 bg-ink-600 sm:grid-cols-3">
+        <div className="mt-8 grid gap-px overflow-hidden rounded-3xl border border-ink-600 bg-ink-600 sm:grid-cols-3 lg:mt-16">
           {p.numeros.map((n) => (
-            <div key={n.rotulo} className="bg-ink-900 p-7">
+            <div key={n.rotulo} className="bg-ink-900 px-6 py-5 lg:p-7">
               <p className="font-display text-[clamp(30px,3.4vw,42px)] font-extrabold leading-none tracking-[-.03em] text-brand">{n.valor}</p>
               <p className="mt-2.5 text-[14px] text-fog-400">{n.rotulo}</p>
             </div>

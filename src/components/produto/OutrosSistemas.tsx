@@ -6,12 +6,12 @@ import { Container, GlowCard, Reveal } from "@/components/ui";
 export default function OutrosSistemas({ atual }: { atual: Slug }) {
   const outros = produtos.filter((p) => p.slug !== atual);
   return (
-    <section className="border-t border-ink-600 pt-24 sm:pt-28">
+    <section className="border-t border-ink-600 pt-12 sm:pt-20 lg:pt-28">
       <Container>
         <Reveal>
           <h2 className="font-display text-[28px] font-bold tracking-[-.02em]">Conheça os outros sistemas</h2>
         </Reveal>
-        <div className="mt-8 grid gap-4 md:grid-cols-3">
+        <div className="mt-6 grid gap-4 md:grid-cols-3 lg:mt-8">
           {outros.map((p, i) => (
             <Reveal key={p.slug} delay={i * 0.06} className="h-full">
               <GlowCard className="h-full">

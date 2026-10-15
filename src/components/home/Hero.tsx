@@ -192,9 +192,9 @@ export default function Hero() {
       <div className="pointer-events-none absolute right-[-10%] top-[-10%] h-[720px] w-[900px] rounded-full bg-brand/[.14] blur-[150px]" aria-hidden="true" />
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-ink-500 to-transparent" aria-hidden="true" />
 
-      <Container className="relative grid items-center gap-9 lg:grid-cols-[1.1fr_1fr] lg:gap-14">
+      <Container className="relative grid items-center gap-9 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-12">
         <div className="text-center lg:text-left">
-          <motion.h1 {...sobe(0)} className="font-display text-[clamp(32px,4.1vw,58px)] font-extrabold leading-[1.04] tracking-[-.04em]">
+          <motion.h1 {...sobe(0)} className="font-display text-[clamp(32px,3.6vw,52px)] font-extrabold leading-[1.04] tracking-[-.04em]">
             Tecnologia que <span className="text-gradient">fortalece negócios</span> através de pessoas.
           </motion.h1>
           <motion.p {...sobe(0.1)} className="mx-auto mt-4 max-w-xl text-[16px] leading-relaxed text-fog-400 lg:mx-0 lg:mt-7 lg:text-[18px]">
@@ -232,7 +232,7 @@ export default function Hero() {
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.15, ease: [0.2, 0.7, 0.2, 1] }}
-          className="hidden min-w-0 lg:block"
+          className="hidden min-w-0 lg:-mr-8 lg:block xl:-mr-24"
         >
           <Pilha />
         </motion.div>
